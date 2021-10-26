@@ -1,3 +1,5 @@
+import Head from 'next/head'; // Head can be used to add additional content to the head tag.
+
 import { getFeaturedEvents } from '../dummy-data';
 import EventList from '../components/events/event-list';
 
@@ -6,7 +8,10 @@ function HomePage() {
 
   return (
     <div>
-      <EventList items={featuredEvents} />
+        <Head> {/* Whatever we add here will be added to the head tag in the HTML document */}
+            <title>NextJS Events</title>
+        </Head>
+        <EventList items={featuredEvents} />
     </div>
   );
 }
