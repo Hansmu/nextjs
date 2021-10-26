@@ -3,6 +3,7 @@ import DateIcon from '../icons/date-icon';
 import AddressIcon from '../icons/address-icon';
 import ArrowRightIcon from '../icons/arrow-right-icon';
 import classes from './event-item.module.css';
+import Image from 'next/image';
 
 function EventItem(props) {
   const { title, image, date, location, id } = props;
@@ -18,7 +19,10 @@ function EventItem(props) {
   return (
     <li className={classes.item}>
       {/* Don't need to include /public in the front because it already knows to look for these in the public folder */ }
-      <img src={'/' + image} alt={title} />
+      <Image src={'/' + image} alt={title} width={250} height={160}/> {/* Image optimizes the images. Have to specify the width and height for it.
+       It uses webp in Google. Reduces the size otherwise as well. Probably by using the width and height. The optimizes images are generated
+       as they're needed. It checks the device to generate and serve the cached image. Once an image's optimized version is generated, then
+       it gets cached. */}
       <div className={classes.content}>
         <div className={classes.summary}>
           <h2>{title}</h2>
