@@ -65,3 +65,9 @@ the classes will have aliases generated for them.
 You can add backend logic to Next.js. To do so add an `api` folder in the pages. Underneath that
 you can build the structure of the requests as you do with pages. You can use Node.js inside of
 those components. You export a function in them.
+
+If you build an application where your MongoDB-related code will execute frequently (e.g. the 
+API route will be hit frequently), you might want to take advantage of MongoDB's "connection 
+pooling" though.
+For this, simply remove all client.close() calls from your code. The connection will then 
+NOT be closed and will be re-used across requests.

@@ -1,4 +1,4 @@
-import {readExistingFeedback} from "./feedback";
+import {readExistingFeedback} from "./index";
 
 export default function handler(req, res) {
     const id = req.query.feedbackId;

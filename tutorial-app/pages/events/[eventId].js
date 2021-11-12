@@ -1,44 +1,46 @@
-import { Fragment } from 'react';
-import { useRouter } from 'next/router';
+import {Fragment} from 'react';
+import {useRouter} from 'next/router';
 
-import { getEventById } from '../../dummy-data';
+import {getEventById} from '../../dummy-data';
 import EventSummary from '../../components/event-detail/event-summary';
 import EventLogistics from '../../components/event-detail/event-logistics';
 import EventContent from '../../components/event-detail/event-content';
 import ErrorAlert from '../../components/ui/error-alert';
 import Head from "next/head";
+import Comments from "../../components/input/comments";
 
 function EventDetailPage() {
-  const router = useRouter();
+    const router = useRouter();
 
-  const eventId = router.query.eventId;
-  const event = getEventById(eventId);
+    const eventId = router.query.eventId;
+    const event = getEventById(eventId);
 
-  if (!event) {
+    if (!event) {
+        return (
+            <ErrorAlert>
+                <p>No event found!</p>
+            </ErrorAlert>
+        );
+    }
+
     return (
-      <ErrorAlert>
-        <p>No event found!</p>
-      </ErrorAlert>
+        <Fragment>
+            <Head> {/* Whatever we add here will be added to the head tag in the HTML document */}
+                <title>{event.title}</title>
+            </Head>
+            <EventSummary title={event.title}/>
+            <EventLogistics
+                date={event.date}
+                address={event.location}
+                image={event.image}
+                imageAlt={event.title}
+            />
+            <EventContent>
+                <p>{event.description}</p>
+            </EventContent>
+            <Comments eventId={event.id}/>
+        </Fragment>
     );
-  }
-
-  return (
-    <Fragment>
-        <Head> {/* Whatever we add here will be added to the head tag in the HTML document */}
-            <title>{event.title}</title>
-        </Head>
-      <EventSummary title={event.title} />
-      <EventLogistics
-        date={event.date}
-        address={event.location}
-        image={event.image}
-        imageAlt={event.title}
-      />
-      <EventContent>
-        <p>{event.description}</p>
-      </EventContent>
-    </Fragment>
-  );
 }
 
 export default EventDetailPage;
