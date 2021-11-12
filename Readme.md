@@ -61,3 +61,7 @@ Files inside of `/public` is made automatically available to visitors.
 Next.js supports CSS modules. You get that functionality when you use 
 `[name].module.css`. Have to import the CSS files as objects then, as
 the classes will have aliases generated for them.
+
+You can add backend logic to Next.js. To do so add an `api` folder in the pages. Underneath that
+you can build the structure of the requests as you do with pages. You can use Node.js inside of
+those components. You export a function in them.
