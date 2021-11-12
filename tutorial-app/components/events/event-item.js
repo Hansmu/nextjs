@@ -20,7 +20,7 @@ function EventItem(props) {
     <li className={classes.item}>
       {/* Don't need to include /public in the front because it already knows to look for these in the public folder */ }
       <Image src={'/' + image} alt={title} width={250} height={160}/> {/* Image optimizes the images. Have to specify the width and height for it.
-       It uses webp in Google. Reduces the size otherwise as well. Probably by using the width and height. The optimizes images are generated
+       It uses webp in Chrome. Reduces the size otherwise as well. Probably by using the width and height. The optimizes images are generated
        as they're needed. It checks the device to generate and serve the cached image. Once an image's optimized version is generated, then
        it gets cached. */}
       <div className={classes.content}>
