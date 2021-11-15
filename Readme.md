@@ -71,3 +71,24 @@ API route will be hit frequently), you might want to take advantage of MongoDB's
 pooling" though.
 For this, simply remove all client.close() calls from your code. The connection will then 
 NOT be closed and will be re-used across requests.
+
+Deployment options:
+* Standard Build - run `next build`.
+  * It produces optimized production bundles and a server-side
+  app: Requires NodeJS server. 
+  * Pages are pre-rendered (if possible) but NodeJS server is required for API routes, 
+  server-side pages, and page revalidations. 
+  * Re-deploy needed if code changes or you don't use revalidations and need page updates.
+* Full static build - run `next export`. 
+  * Produces 100% static app (HTML, CSS, JS): No NodeJS server required.
+  * Doesn't work if your app uses API routes, server-side pages, or wants to use page 
+  revalidations. 
+  * Re-deploy needed for all code and content changes.
+
+`next.config.js` is used to add advanced custom behavior to your app. Can add environment variables
+there for example. Obviously env variables can still be supplied via the deployment environment.
+You can define either an object or a function in it. You can add if checks and the likes into a 
+function.
+
+Vercel is a good choice for hosting a Next.js server as they made the library and the service is
+optimized for it.
